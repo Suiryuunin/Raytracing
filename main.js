@@ -16,19 +16,23 @@ document.body.appendChild( renderer.domElement );
 const controls = new OrbitControls(camera, renderer.domElement);
 
 const geometry = new THREE.IcosahedronGeometry( 1, 1 );
-const material = new THREE.MeshStandardMaterial( { color: 0xff0000 } );
+const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
 const ico = new THREE.Mesh( geometry, material );
 scene.add( ico );
 
 const geometry2 = new THREE.BoxGeometry( 2, 3, 2 );
-const material2 = new THREE.MeshStandardMaterial( { color: 0x00000 } );
+const geometry3 = new THREE.BoxGeometry( 2, 2, 2 );
+const material2 = new THREE.MeshBasicMaterial( { color: 0x00000 } );
+const white = new THREE.MeshBasicMaterial( { color: 0xffffff } );
 const ico2 = new THREE.Mesh( geometry2, material2 );
+const ico3 = new THREE.Mesh( geometry3, white );
 ico2.name = "reflect";
 ico2.position.set(0, 0, 3);
-scene.add( ico2 );
+ico3.position.set(0, 2.5, 3);
+scene.add( ico2, ico3 );
 
 const planeG = new THREE.PlaneGeometry( 10, 10 );
-const gray = new THREE.MeshStandardMaterial({color: 0xAAAAAA, side: THREE.DoubleSide});
+const gray = new THREE.MeshBasicMaterial({color: 0xAAAAAA, side: THREE.DoubleSide});
 const plane = new THREE.Mesh(planeG, gray);
 plane.rotateX(-Math.PI/2);
 plane.position.setY(-1);
